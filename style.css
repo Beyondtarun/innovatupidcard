@@ -119,3 +119,6 @@ button:hover{
     margin-top: 10px;
     font-size: 8px;
 }
+footer a{
+    color: grey;
+}
