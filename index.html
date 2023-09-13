@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Enter Two Names</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Enter Two Names</h1>
+
+    <!-- Input fields for entering names -->
+    <label for="name1">Name :</label>
+    <input type="text" id="name1" placeholder="Enter Name" />
+
+    <label for="name2">Designation :</label>
+    <input type="text" id="name2" placeholder="Enter Designation" />
+
+    <!-- Button to display names -->
+    <button onclick="displayNames()">ID Card Display</button>
+
+    <div class="flex justify_center minheight">
+      <div class="idCard border flex_col item_center text_center bg_grey">
+        <div class="logo flex bg_white item_center">
+          <div><img src="logo.png" /></div>
+        </div>
+        <div class="title flex_col justify_center text_center">
+          <b>INNOVATUP</b>
+          <p id="sub"><i>Innovation & startup cell</i></p>
+        </div>
+        <div class="member border flex justify_center item_center bg_white">
+          <img src="1.jpg" alt="member image" />
+        </div>
+        <div style="width: 100%" class="flex justify_center">
+          <div class="displayArea flex_col justify_between bg_white">
+            <div>
+              <span id="names"><h3></h3></span>
+            </div>
+            <div>
+              <span id="designation"><h4></h4></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display area for names -->
+    <!-- <div id="idcard">id card
+        <h1 id="names"></h1>
+        <h2 id="designation"></h2>
+    </div> -->
+
+    <script>
+      function displayNames() {
+        // Get the values entered in the input fields
+        var name1 = document.getElementById("name1").value;
+        var name2 = document.getElementById("name2").value;
+        name1 = name1.toUpperCase();
+        name2 = name2.toUpperCase();
+        // Display the names in the display area
+        var names = document.getElementById("names");
+        var desig = document.getElementById("designation");
+        names.innerHTML = " " + name1;
+        desig.innerHTML = " " + name2;
+      }
+      var doc = new jsPDF();
+    </script>
+  </body>
+</html>
