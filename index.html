@@ -1,24 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Enter Two Names</title>
+    <title>INNOVATEUP ID CARD</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+    <script>
+      window.onload = function () {
+        document.getElementById("dlpdf").addEventListener("click", () => {
+          const idCard = this.document.getElementById("idCard");
+          console.log(idCard);
+          console.log(window);
+          var name1 = document.getElementById("name1").value; // Get the value of name1
+          name1 = name1.toLowerCase().replace(/\s/g, "_"); // Modify name for the filename
+          var filename = name1 + "_idcard.pdf";
+          var opt = {
+            margin: 2.5,
+            filename: filename,
+            image: { type: "png", quality: 1 },
+            html2canvas: { scale: 3 },
+            jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+          };
+          html2pdf().from(idCard).set(opt).save();
+        });
+      };
+    </script>
   </head>
   <body>
-    <h1>Enter Two Names</h1>
+    <div class="heading flex justify_center text_center"><a href="https://www.bciit.ac.in/" target="_blank">
+      <div><img src="logo.png" /></div>
+
+    </a></div>
+    <hr style="width:90%">
+    <div class="heading flex justify_center text_center">
+      <a href="https://innovation-club-website.framer.ai/" target="_blank">
+        <h1 style="font-size:25px"><i>INNOVATION & STARTUP CELL</i></h1></a></div>
+        <hr>
+    <h2>ENTER DETAILS</h1>
 
     <!-- Input fields for entering names -->
     <label for="name1">Name :</label>
-    <input type="text" id="name1" placeholder="Enter Name" />
+    <input
+      type="text"
+      id="name1"
+      placeholder="Enter Name"
+      style="margin-left: 50px"
+    /><br />
 
     <label for="name2">Designation :</label>
-    <input type="text" id="name2" placeholder="Enter Designation" />
+    <input
+      type="text"
+      id="name2"
+      placeholder="Enter Designation"
+      style="margin-left: 10px"
+    />
 
     <!-- Button to display names -->
     <button onclick="displayNames()">ID Card Display</button>
 
     <div class="flex justify_center minheight">
-      <div class="idCard border flex_col item_center text_center bg_grey">
+      <div
+        class="idCard border flex_col item_center text_center bg_grey"
+        id="idCard"
+      >
         <div class="logo flex bg_white item_center">
           <div><img src="logo.png" /></div>
         </div>
@@ -27,7 +70,20 @@
           <p id="sub"><i>Innovation & startup cell</i></p>
         </div>
         <div class="member border flex justify_center item_center bg_white">
-          <img src="1.jpg" alt="member image" />
+          <input
+            type="file"
+            id="memberImage"
+            accept="image/*"
+            style="display: none"
+          />
+          <label for="memberImage">
+            <img
+              src="user.png"
+              alt="member image"
+              id="previewImage"
+              style="cursor: pointer"
+            />
+          </label>
         </div>
         <div style="width: 100%" class="flex justify_center">
           <div class="displayArea flex_col justify_between bg_white">
@@ -41,12 +97,9 @@
         </div>
       </div>
     </div>
-
-    <!-- Display area for names -->
-    <!-- <div id="idcard">id card
-        <h1 id="names"></h1>
-        <h2 id="designation"></h2>
-    </div> -->
+    <div class="flex justify_center">
+      <button id="dlpdf">Download</button>
+    </div>
 
     <script>
       function displayNames() {
@@ -61,7 +114,24 @@
         names.innerHTML = " " + name1;
         desig.innerHTML = " " + name2;
       }
-      var doc = new jsPDF();
+
+      // Handle image upload and preview
+      document
+        .getElementById("memberImage")
+        .addEventListener("change", function () {
+          var fileInput = this;
+          var previewImage = document.getElementById("previewImage");
+
+          if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+              previewImage.src = e.target.result;
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+          }
+        });
     </script>
   </body>
 </html>
