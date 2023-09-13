@@ -24,7 +24,7 @@
 }
 .minheight{
     margin-top:20px;
-    min-height: 600px;
+    max-height: 600px;
 }
 .heading{
     /* background-color: rgba(13, 73, 164, 0.795); */
@@ -113,4 +113,9 @@ button{margin: 5px;
 }
 button:hover{
     background-color: red;
+}
+.footnote{
+    color:white;
+    margin-top: 10px;
+    font-size: 8px;
 }
