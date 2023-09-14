@@ -22,6 +22,9 @@
 .border{
     border: 1px solid black;
 }
+.white{
+    color: white;
+}
 .minheight{
     margin-top:20px;
     max-height: 600px;
@@ -70,18 +73,22 @@ img{
     color: aliceblue;
 }
 .member{
-    margin: 20px;
+    
     height: 150px;
     width: 150px;
     border-radius: 50%;
     overflow: hidden;
+    background-color: rgb(199, 199, 4);;
 }
 .member img{
     
     object-fit: cover;
-    height: 100%;
-    width: 100%;
+    height: 140px;
+    width: 140px;
     border-radius: 50%;
+}
+#displayArea{
+    margin-top: 2px;
 }
 .displayArea{
     width: 80%;
@@ -91,6 +98,10 @@ img{
 }
 #designation{
     color:red;
+}
+#phone{
+    margin-top: 0%;
+    font-size: 10px;
 }
 a{
     text-decoration: none;
@@ -121,4 +132,7 @@ button:hover{
 }
 footer a{
     color: grey;
+}
+.note{
+    color:red;
 }

@@ -3,14 +3,15 @@
   <head>
     <title>INNOVATEUP ID CARD</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script> -->
+    <script src="cdnjs\html2pdf.bundle.min.js"></script>
     <script>
       window.onload = function () {
         document.getElementById("dlpdf").addEventListener("click", () => {
-          const idCard = this.document.getElementById("idCard");
+          const idCard = document.getElementById("idCard");
           console.log(idCard);
           console.log(window);
-          var name1 = document.getElementById("name1").value; // Get the value of name1
+          var name1 = document.getElementById("phoneInput").value; // Get the value of name1
           name1 = name1.toLowerCase().replace(/\s/g, "_"); // Modify name for the filename
           var filename = name1 + "_idcard.pdf";
           var opt = {
@@ -18,7 +19,7 @@
             filename: filename,
             image: { type: "png", quality: 1 },
             html2canvas: { scale: 3 },
-            jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+            jsPDF: { unit: "in", format: "A4", orientation: "portrait" },
           };
           html2pdf().from(idCard).set(opt).save();
         });
@@ -44,7 +45,7 @@
       id="name1"
       placeholder="Enter Name"
       style="margin-left: 50px"
-    /><br />
+    /><br /><br/>
 
     <label for="name2">Designation :</label>
     <input
@@ -52,16 +53,25 @@
       id="name2"
       placeholder="Enter Designation"
       style="margin-left: 10px"
+    /><br /><br>
+
+    <label for="phoneInput">Contact No:</label>
+    <input
+      type="text"
+      id="phoneInput"
+      placeholder="Enter phone"
+      style="margin-left: 17px"
     />
 
     <!-- Button to display names -->
-    <button onclick="displayNames()">ID Card Display</button>
+    <button onclick="displayNames()">ID Card Display</button><br/>
+
+    <p class="note">*choose only 1:1 or potrait photos for best fit</p>
 
     <div class="flex justify_center minheight">
       <div
         class="idCard border flex_col item_center text_center bg_grey"
-        id="idCard"
-      >
+        id="idCard">
         <div class="logo flex bg_white item_center">
           <div><img src="logo.png" /></div>
         </div>
@@ -69,33 +79,37 @@
           <b>INNOVATUP</b>
           <p id="sub"><i>Innovation & startup cell</i></p>
         </div>
-        <div class="member border flex justify_center item_center bg_white">
+        <div class="year">
+          <h4 class="white">2023-24</h4>
+        </div>
+        <div class="member flex justify_center item_center bg_white">
           <input
             type="file"
             id="memberImage"
             accept="image/*"
-            style="display: none"
-          />
+            style="display: none" />
           <label for="memberImage">
             <img
               src="user.png"
               alt="member image"
               id="previewImage"
-              style="cursor: pointer"
-            />
+              style="cursor: pointer"  />
           </label>
         </div>
-        <div style="width: 100%" class="flex justify_center">
+        <div style="width: 100%" class="flex justify_center" id="displayArea">
           <div class="displayArea flex_col justify_between bg_white">
             <div>
               <span id="names"><h3></h3></span>
             </div>
             <div>
-              <span id="designation"><h4></h4></span>
+              <span id="designation"><h4></h4></span>              
+            </div>
+            <div>
+              <span id="phone"><h4></h4></span>              
             </div>
           </div>
         </div>
-        <div class="footnote">
+        <div class="footnote border">
           <p>This id is not valid for verification proof.</p>
         </div>
       </div>
@@ -114,13 +128,17 @@
         // Get the values entered in the input fields
         var name1 = document.getElementById("name1").value;
         var name2 = document.getElementById("name2").value;
+        var phone = document.getElementById("phoneInput").value;
         name1 = name1.toUpperCase();
         name2 = name2.toUpperCase();
         // Display the names in the display area
         var names = document.getElementById("names");
         var desig = document.getElementById("designation");
+        var phones = document.getElementById("phone");
         names.innerHTML = " " + name1;
         desig.innerHTML = " " + name2;
+        phones.innerHTML = " " + phone;
+
       }
 
       // Handle image upload and preview
