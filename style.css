@@ -78,12 +78,14 @@ img{
     width: 150px;
     border-radius: 50%;
     overflow: hidden;
+    
     background-color: rgb(199, 199, 4);;
 }
 .member img{
     
     object-fit: cover;
-    height: 140px;
+    max-height: 140px;
+    min-height:140px;
     width: 140px;
     border-radius: 50%;
 }

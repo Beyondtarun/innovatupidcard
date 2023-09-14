@@ -5,26 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script> -->
     <script src="cdnjs\html2pdf.bundle.min.js"></script>
-    <script>
-      window.onload = function () {
-        document.getElementById("dlpdf").addEventListener("click", () => {
-          const idCard = document.getElementById("idCard");
-          console.log(idCard);
-          console.log(window);
-          var name1 = document.getElementById("phoneInput").value; // Get the value of name1
-          name1 = name1.toLowerCase().replace(/\s/g, "_"); // Modify name for the filename
-          var filename = name1 + "_idcard.pdf";
-          var opt = {
-            margin: 2.5,
-            filename: filename,
-            image: { type: "png", quality: 1 },
-            html2canvas: { scale: 3 },
-            jsPDF: { unit: "in", format: "A4", orientation: "portrait" },
-          };
-          html2pdf().from(idCard).set(opt).save();
-        });
-      };
-    </script>
+    
   </head>
   <body>
     <div class="heading flex justify_center text_center"><a href="https://www.bciit.ac.in/" target="_blank">
@@ -122,6 +103,26 @@
         <h2>Developed with <span style="color:red">&#10084;</span> by <a href="https://www.linkedin.com/in/beyondtarun/">Tarun.</a></h2>
       </div>
     </footer>
+    <script>
+      window.onload = function () {
+        document.getElementById("dlpdf").addEventListener("click", () => {
+          const idCard = document.getElementById("idCard");
+          console.log(idCard);
+          console.log(window);
+          var name1 = document.getElementById("phoneInput").value; // Get the value of name1
+          name1 = name1.toLowerCase().replace(/\s/g, "_"); // Modify name for the filename
+          var filename = name1 + "_idcard.pdf";
+          var opt = {
+            margin: 2.5,
+            filename: filename,
+            image: { type: "png", quality: 1 },
+            html2canvas: { scale: 3 },
+            jsPDF: { unit: "in", format: "A4", orientation: "portrait" },
+          };
+          html2pdf().from(idCard).set(opt).save();
+        });
+      };
+    </script>
 
     <script>
       function displayNames() {
